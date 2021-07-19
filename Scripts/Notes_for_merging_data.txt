@@ -1,0 +1,53 @@
+#Commands and scripts to merge data from the same library that has been run on multiple flowcells (and has the exact same name)
+#Written to work on Ruddle servers
+#Symlinks wont work because you can't cat across them
+
+#first, make a directory for all of the data (e.g. Batch_3)
+
+mkdir Batch_3
+
+#Make subdirectories for each flowcell the library was run on (e.g. if it was run on two flowcells)
+
+mkdir Run_1
+mkdir Run_2
+
+#Recursively copy all subdirectories and files YCGA source for each run in the new "Run_1" subdirectory. Must point to directory where YCGA placed data (hardcoded)
+
+cp -r /path/to/where/data/is .
+
+#Now you have a directory with two subdirectories, Run_1 and Run_2, that contain all of the respective subdirectories and contents for each sample on each run
+#Example:
+
+Sample_Yale-243
+Sample_Yale-248
+Sample_Yale-253
+Sample_Yale-258
+
+#Each of these subdirectories contain the R1.fastq.gz and R2.fastq.gz
+
+#Now create a list of each of the unique file names for each sample. This can easily be done by capturing the output of 'ls' in a seperate text file e.g.
+
+ls /path/to/sample/subdirectories > temp_list.txt
+
+#The YCGA appends each of the begining of each sample name with the text "Sample_". This needs to be removed for our processing script. 
+#The output of the above command will read:
+
+Sample_Yale-243
+Sample_Yale-248
+Sample_Yale-253
+Sample_Yale-258
+
+
+#We can remove text from a line list of characters using bash commands.
+#To remove 'Sample_' from the temp_list.txt file, run
+
+cut -c8- temp_list.txt > list.txt
+
+#The list.txt file will now read
+
+Yale-243
+Yale-248
+Yale-253
+Yale-258
+
+#We can now run our 'Loop_processing.bash' script with this list.txt file to run the 'Cat_data_across_runs.bash' script

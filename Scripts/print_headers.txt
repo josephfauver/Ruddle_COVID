@@ -1,0 +1,3 @@
+#sed script to print the headers of each genome in a multifasta file
+
+$ sed -n '/>/ s/>//p' *.fa

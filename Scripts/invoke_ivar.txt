@@ -1,0 +1,9 @@
+#commands to get ivar running on Ruddle via conda
+
+srun --pty -c 2 -p interactive bash
+module load miniconda
+conda create -y -n ivar -c conda-forge -c bioconda ivar
+
+module load miniconda
+source activate ivar
+

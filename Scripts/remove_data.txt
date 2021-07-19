@@ -1,0 +1,12 @@
+#!/bin/bash
+
+#Unique name given to each library. This will be provided in a list file for each library.  
+file_base=$1
+
+cd ${file_base}/Unaligned/ 
+
+rm *.html 
+rm *.bam
+rm *.fa
+rm *.zip
+rm *.txt

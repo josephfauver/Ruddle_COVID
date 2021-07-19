@@ -1,0 +1,25 @@
+#!/bin/bash SBATCH --mem-per-cpu=50G
+
+#this command will count the N content of each genome in a multi_fasta file
+#to prepare your multi_fasta for processing, concatonate all of the .fasta files together
+
+cat *.fasta > multi_fasta.fa
+
+#programs to install to process data:
+#seqtk
+
+#installing seqtk for the first time
+
+module load miniconda
+conda create -y -n seqtk -c conda-forge -c bioconda seqtk
+source activate seqtk
+
+#after seqtk is installed, you need to activate the conda envirnment each time to run it
+
+module load miniconda
+source activate seqtk
+
+#the comand to count the N content of each genome is the following:
+
+seqtk comp multi_fasta.fa | awk '{x=$3+$4+$5+$6;y=$2;print $1,y-x,y,(y-x)/y}' > N_content_multi_fasta.tsv
+

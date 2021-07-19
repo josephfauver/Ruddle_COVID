@@ -1,0 +1,4 @@
+#command to generate symlinks to your data from YCGA
+#seq_list.txt is the path to your demultiplexed reads provided by YCGA
+
+/home/bioinfo/software/knightlab/bin_Mar2018/ycgaFastq seq_list.txt
