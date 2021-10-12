@@ -1,5 +1,5 @@
 #!/bin/sh
 for file in `cat list.txt`
 do
-  ./get_variants.bash $file
+  ./run_a_script.bash $file
 done
