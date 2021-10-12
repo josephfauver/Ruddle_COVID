@@ -1,13 +1,4 @@
 #!/bin/bash
-#SBATCH --mem-per-cpu=50G
-
-#programs to install to process data:
-module load SAMtools
-module load BWA
-module load BEDTools
-module load miniconda
-source activate ivar
-
 
 #Unique name given to each library. This will be provided in a list file for each library.  
 file_base=$1
